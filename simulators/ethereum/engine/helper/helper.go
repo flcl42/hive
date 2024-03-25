@@ -53,11 +53,7 @@ func (rt *LoggingRoundTrip) RoundTrip(req *http.Request) (*http.Response, error)
 		return nil, err
 	}
 	reqLogBytes := bytes.TrimSpace(reqBytes[:])
-	if len(reqLogBytes) > MAX_LOG_BYTES {
-		rt.Logger.Logf(">> (%s) %s... (Log trimmed)", rt.ID, reqLogBytes[:MAX_LOG_BYTES])
-	} else {
-		rt.Logger.Logf(">> (%s) %s", rt.ID, reqLogBytes)
-	}
+	rt.Logger.Logf(">> (%s) %s", rt.ID, reqLogBytes)
 	reqCopy := *req
 	reqCopy.Body = io.NopCloser(bytes.NewReader(reqBytes))
 
@@ -76,11 +72,7 @@ func (rt *LoggingRoundTrip) RoundTrip(req *http.Request) (*http.Response, error)
 	respCopy := *resp
 	respCopy.Body = io.NopCloser(bytes.NewReader(respBytes))
 	respLogBytes := bytes.TrimSpace(respBytes[:])
-	if len(respLogBytes) > MAX_LOG_BYTES {
-		rt.Logger.Logf("<< (%s) %s... (Log trimmed)", rt.ID, respLogBytes[:MAX_LOG_BYTES])
-	} else {
-		rt.Logger.Logf("<< (%s) %s", rt.ID, respLogBytes)
-	}
+	rt.Logger.Logf("<< (%s) %s", rt.ID, respLogBytes)
 	return &respCopy, nil
 }
 
