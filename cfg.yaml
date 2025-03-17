@@ -1,0 +1,7 @@
+- client: nethermind
+  build_args:
+      baseimage: p2
+      tag: latest
+- client: fluffy
+- client: trin
+- client: ultralight

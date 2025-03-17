@@ -36,5 +36,6 @@ ADD https://raw.githubusercontent.com/ethereum/portal-spec-tests/master/tests/ma
 ADD https://raw.githubusercontent.com/ethereum/portal-spec-tests/master/tests/mainnet/beacon_chain/hive/test_data.yaml ./test-data/beacon_test_data.yaml
 
 ENV RUST_LOG=debug
+ENV RUST_BACKTRACE=1
 
 ENTRYPOINT ["./portal"]
