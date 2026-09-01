@@ -5,7 +5,7 @@ ENV GOPROXY=${GOPROXY}
 RUN apk add --update git ca-certificates gcc musl-dev linux-headers
 
 # Clone the tests repo.
-RUN git clone --depth 1 --recurse-submodules https://github.com/ethereum/tests.git /tests
+RUN git clone --depth 1 --branch legacy-collisions-pr17 --recurse-submodules https://github.com/flcl42/tests.git /tests
 
 # Build the simulator executable.
 ADD . /source
